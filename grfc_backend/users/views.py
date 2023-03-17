@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib.auth.views import LoginView
 from django.urls import reverse_lazy
 # from django.contrib.auth.decorators import login_required
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from .models import Subdivision
 from .serializers import SubdivisionSerializer
 
@@ -17,13 +17,18 @@ class HomeView(TemplateView):
     template_name = 'index.html'
 
 
-class SubdivisionAPIView(generics.RetrieveUpdateDestroyAPIView):
-    '''Возвращает запись по ключу'''
+class SubdivisionViewSet(viewsets.ModelViewSet):
     queryset = Subdivision.objects.all()
     serializer_class = SubdivisionSerializer
 
 
-class SubdivisionAPIList(generics.ListAPIView):
-    '''Возвращает все записи из бд'''
-    queryset = Subdivision.objects.all()
-    serializer_class = SubdivisionSerializer
+# class SubdivisionAPIView(generics.RetrieveUpdateDestroyAPIView):
+#     '''Возвращает запись по ключу'''
+#     queryset = Subdivision.objects.all()
+#     serializer_class = SubdivisionSerializer
+
+
+# class SubdivisionAPIList(generics.ListAPIView):
+#     '''Возвращает все записи из бд'''
+#     queryset = Subdivision.objects.all()
+#     serializer_class = SubdivisionSerializer
